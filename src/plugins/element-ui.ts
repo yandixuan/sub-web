@@ -1,8 +1,39 @@
 import { App, Plugin, Component } from 'vue';
-import { ElButton, ElSelect, ElCard, ElRow, ElCol, ElContainer, ElForm, ElFormItem, ElRadio } from 'element-plus';
+import {
+  ElButton,
+  ElSelect,
+  ElCard,
+  ElRow,
+  ElCol,
+  ElContainer,
+  ElForm,
+  ElFormItem,
+  ElRadio,
+  ElInput,
+  ElOption,
+  ElDivider,
+  ElMessage,
+  ElMessageBox,
+  ElNotification,
+  ElAutocomplete,
+} from 'element-plus';
 
-const components: Component[] = [ElButton, ElSelect, ElCard, ElRow, ElCol, ElContainer, ElForm, ElFormItem, ElRadio];
-const plugins: Plugin[] = [];
+const components: Component[] = [
+  ElButton,
+  ElSelect,
+  ElOption,
+  ElCard,
+  ElRow,
+  ElCol,
+  ElContainer,
+  ElForm,
+  ElFormItem,
+  ElRadio,
+  ElInput,
+  ElDivider,
+  ElAutocomplete,
+];
+const plugins: any[] = [ElMessage, ElMessageBox, ElNotification];
 
 export default {
   install: function(app: App) {

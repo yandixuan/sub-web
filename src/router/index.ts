@@ -1,5 +1,5 @@
 import { createRouter, createWebHashHistory, RouteRecordRaw } from 'vue-router';
-import Subconverter from '@/views/Subconverter.vue';
+import Subconverter from '@/views/subconverter/index.vue';
 
 const routes: Array<RouteRecordRaw> = [
   {
