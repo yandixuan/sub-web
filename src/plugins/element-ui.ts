@@ -1,4 +1,4 @@
-import { App, Plugin, Component } from 'vue';
+import { App, Component } from 'vue';
 import {
   ElButton,
   ElSelect,
@@ -33,15 +33,17 @@ const components: Component[] = [
   ElDivider,
   ElAutocomplete,
 ];
-const plugins: any[] = [ElMessage, ElMessageBox, ElNotification];
+const plugins = [ElMessage, ElMessageBox, ElNotification];
 
 export default {
-  install: function(app: App) {
+  install: function (app: App): void {
     components.forEach(component => {
       app.component(component.name as string, component);
     });
     plugins.forEach(plugin => {
       app.use(plugin);
     });
+    // 全局 provide/inject
+    app.provide('$message', ElMessage);
   },
 };

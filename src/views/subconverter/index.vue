@@ -1,5 +1,5 @@
 <template>
-  <el-row style="margin-top:10px">
+  <el-row style="margin-top: 10px">
     <el-col>
       <el-card>
         <template #header>
@@ -49,9 +49,7 @@
               <el-input class="copy-content" disabled v-model="customSubUrl">
                 <template #append>
                   <copy-to-clipboard :text="customSubUrl" @copy="handleCopy">
-                    <el-button ref="copy-btn" icon="el-icon-document-copy">
-                      复制
-                    </el-button>
+                    <el-button ref="copy-btn" icon="el-icon-document-copy"> 复制 </el-button>
                   </copy-to-clipboard>
                 </template>
               </el-input>
@@ -80,8 +78,9 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref, computed, reactive, getCurrentInstance } from 'vue';
+import { defineComponent, ref, computed, reactive, inject } from 'vue';
 import { clientTypeMap } from './config';
+import { ElMessage } from 'element-plus';
 
 export default defineComponent({
   name: 'SubConverter',
@@ -97,7 +96,8 @@ export default defineComponent({
       customBackend: 'http://127.0.0.1:25500/sub?',
       insert: false, // 是否插入默认订阅的节点，对应配置项 insert_url
     });
-    const { ctx } = getCurrentInstance() as any;
+
+    const $message = inject('$message') as typeof ElMessage;
 
     const handleCopy = (text: string, result: boolean) => {
       console.log(text);
@@ -106,7 +106,7 @@ export default defineComponent({
 
     const generateUrl = () => {
       if (!form.sourceSubUrl || !form.clientType) {
-        ctx.$message.error('订阅链接与客户端为必填项');
+        $message.error('订阅链接与客户端为必填项');
         return;
       }
 
@@ -119,7 +119,7 @@ export default defineComponent({
 
     const import2Clash = () => {
       if (customSubUrl.value === '') {
-        ctx.$message.error('请先填写必填项，生成订阅链接');
+        $message.error('请先填写必填项，生成订阅链接');
         return;
       }
       const url = 'clash://install-config?url=';
